@@ -59,13 +59,14 @@ export function SearchResults({
           key={result.id}
           className="overflow-hidden hover:shadow-lg transition-shadow group"
         >
-          <CardHeader>
+          <CardHeader className="pb-2">
             <CardTitle className="line-clamp-1 group-hover:text-primary transition-colors">
-              {result.id}
+              {result.name}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground line-clamp-3">{result.name}</p>
+            <h5 className="text-sm text-red-800 pb-4">{result.profession}</h5>
+            <p className="text-muted-foreground">{result.description}</p>
           </CardContent>
         </Card>
       ))}
