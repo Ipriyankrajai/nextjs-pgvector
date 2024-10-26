@@ -1,7 +1,5 @@
-export default function Home() {
-  return (
-    <main>
-      <h1>Nextjs with pgvector</h1>
-    </main>
-  );
+import Home from "@/components/home";
+
+export default function Page() {
+  return <Home />;
 }
