@@ -1,11 +1,11 @@
-import { SearchResult } from "@/types/search";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { User } from "@prisma/client";
 
 interface SearchResultsProps {
-  results: SearchResult[];
+  results: User[];
   isLoading: boolean;
   error: Error | null;
 }
@@ -61,13 +61,11 @@ export function SearchResults({
         >
           <CardHeader>
             <CardTitle className="line-clamp-1 group-hover:text-primary transition-colors">
-              {result.title}
+              {result.id}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-muted-foreground line-clamp-3">
-              {result.description}
-            </p>
+            <p className="text-muted-foreground line-clamp-3">{result.name}</p>
           </CardContent>
         </Card>
       ))}
