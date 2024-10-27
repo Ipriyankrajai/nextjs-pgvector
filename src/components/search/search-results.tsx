@@ -65,7 +65,11 @@ export function SearchResults({
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <h5 className="text-sm text-red-800 pb-4">{result.profession}</h5>
+            <h5 className="text-sm text-red-800 pb-4">{result.category}</h5>
+            <h5 className="text-sm pb-4">
+              <span className="font-bold">Founders: </span>
+              {result.founders}
+            </h5>
             <p className="text-muted-foreground">{result.description}</p>
           </CardContent>
         </Card>
