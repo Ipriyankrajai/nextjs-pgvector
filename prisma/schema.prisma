@@ -5,17 +5,20 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
 }
 
 model User {
-  id          Int    @id @default(autoincrement())
+  id          Int                         @id @default(autoincrement())
   name        String
-  profession  String @default("Engineer")
-  description String @default("Work In Progress")
+  profession  String                      @default("Engineer")
+  description String                      @default("Work In Progress")
+  embedding   Unsupported("vector(1536)")
 }
