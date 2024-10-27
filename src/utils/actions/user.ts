@@ -11,3 +11,13 @@ export async function getUsers({ query }: { query: string }) {
     },
   });
 }
+
+export async function addUsers({
+  user,
+}: {
+  user: { name: string; profession: string; description: string };
+}) {
+  return await prisma.user.create({
+    data: user,
+  });
+}
