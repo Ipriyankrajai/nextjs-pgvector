@@ -7,6 +7,7 @@ export async function getUsers({ query }: { query: string }) {
     where: {
       name: {
         contains: query,
+        mode: "insensitive",
       },
     },
   });
