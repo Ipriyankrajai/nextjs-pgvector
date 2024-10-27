@@ -1,12 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getUsers } from "@/utils/actions/user";
+import { searchUsersthroughEmbedding } from "@/utils/actions/user";
 import { User } from "@prisma/client";
 
 // Simulated API call - replace with your actual API endpoint
 const searchAPI = async (query: string) => {
-  return await getUsers({ query });
+  // return await getUsers({ query });
+  return await searchUsersthroughEmbedding({ query });
 };
 
 export function useSearchQuery(query: string) {
@@ -20,7 +21,7 @@ export function useSearchQuery(query: string) {
         setIsLoading(true);
         setError(null);
         const data = await searchAPI(query);
-        setResults(data);
+        setResults(data as User[]);
       } catch (err) {
         setError(
           err instanceof Error ? err : new Error("Failed to fetch results")
