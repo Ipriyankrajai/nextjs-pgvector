@@ -18,7 +18,8 @@ datasource db {
 model User {
   id          Int                         @id @default(autoincrement())
   name        String
-  profession  String                      @default("Engineer")
-  description String                      @default("Work In Progress")
+  category    String
+  description String
+  founders    String
   embedding   Unsupported("vector(1536)")
 }
