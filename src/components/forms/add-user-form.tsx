@@ -24,14 +24,18 @@ const formSchema = z.object({
     .string()
     .min(2, "Name must be at least 2 characters")
     .max(50, "Name must be less than 50 characters"),
-  profession: z
+  category: z
     .string()
-    .min(2, "Profession must be at least 2 characters")
-    .max(50, "Profession must be less than 50 characters"),
+    .min(2, "Category must be at least 2 characters")
+    .max(50, "Category must be less than 50 characters"),
   description: z
     .string()
     .min(10, "Description must be at least 10 characters")
-    .max(500, "Description must be less than 500 characters"),
+    .max(1000, "Description must be less than 500 characters"),
+  founders: z
+    .string()
+    .min(2, "Founders must be at least 2 characters")
+    .max(100, "Founders must be less than 100 characters"),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -44,8 +48,9 @@ export default function AddUserForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
-      profession: "",
+      category: "",
       description: "",
+      founders: "",
     },
   });
 
@@ -56,8 +61,9 @@ export default function AddUserForm() {
       await addUsers({
         user: {
           name: values.name,
-          profession: values.profession,
+          category: values.category,
           description: values.description,
+          founders: values.founders,
         },
       });
 
@@ -99,13 +105,31 @@ export default function AddUserForm() {
             </FormItem>
           )}
         />
+        <FormField
+          control={form.control}
+          name="founders"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Founders</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="John Doe, Jane Smith"
+                  {...field}
+                  className="h-11"
+                  disabled={isSubmitting}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={form.control}
-          name="profession"
+          name="category"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Profession</FormLabel>
+              <FormLabel>Catagory</FormLabel>
               <FormControl>
                 <Input
                   placeholder="Software Engineer"
